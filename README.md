@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+## 미니 블로그 기획과 구현
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 1. 제작 기반
+- 코드 편집기: VSCode
+- 사용환경 구성: create-react-app
+- 추가 설치 리액트 패키지: react-router-dom v6, styled-components
 
-## Available Scripts
+### 2. 미니 블로그에 필요한 기능
+- 글 목록 보기 기능 (리스트 형태)
+  + PostList, PostListItem
+- 글 보기 기능
+  + Post
+- 댓글 보그 기능
+  + CommentList, CommentListItem
+- 글 작성 기능
+  + PostWrite
+- 댓글 작성 기능
+  + CommentWrite
+  
+### 3. 구현
+#### 공통 기능
+- 버튼 컴포넌트
+- 텍스트 입력 컴포넌트
+#### 리스트 컴포넌트 구현
+- PostList
+- PostListItem
+- CommentList
+- CommentListItem
+#### Page 컴포넌트
+- MainPage
+- PostViewPage
+- PostWritePage
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 4. 라우터 구현
+```
+<BrowserRouter><MainTitleText>준형의 미니 블로그</MainTitleText>
+    <Routes>
+        <Route index element={<MainPage/>}/>
+        <Route path="post-write" element={<PostWritePage/>}/>
+        <Route path="post/:postId" element={<PostViewPage/>}/>
+    </Routes>
+</BrowserRouter>
+```
+### 5. 빌드
+```
+npm run build
+```
+Node.js 환경에서 간단한 정적 파일 웹 서버를 실행하기 위해 serve 패키지 설치
+```
+npm install -g serve
+```
+빌드 완료된 파일을 웹서버에 호스팅
+```
+serve -s build
+```
+윈도우에서 만약 권한 설정 문제로 실행이 안된다면 PowerShell에서
+```
+get-ExecutionPolicy
+```
+만약 권한이 Restricted 라면
+```
+Set-ExecutionPolicy RemoteSigned
+```
+Y 입력 후 다시 serve 명령어 실행
