@@ -10,7 +10,7 @@
   + PostList, PostListItem
 - 글 보기 기능
   + Post
-- 댓글 보그 기능
+- 댓글 보기 기능
   + CommentList, CommentListItem
 - 글 작성 기능
   + PostWrite
